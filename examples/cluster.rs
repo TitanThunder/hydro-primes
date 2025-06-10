@@ -11,7 +11,7 @@ async fn main() {
 
     let _nodes = flow
         .with_process(&leader, deployment.Localhost())
-        .with_cluster(&workers, vec![deployment.Localhost(); 4])
+        .with_cluster(&workers, vec![deployment.Localhost(); 8])
         .deploy(&mut deployment);
 
     deployment.run_ctrl_c().await.unwrap();
