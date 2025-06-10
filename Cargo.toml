@@ -1,0 +1,23 @@
+[package]
+name = "code"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = ["stageleft_devel"]
+stageleft_devel = []
+
+[dependencies]
+hydro_lang = { git = "https://github.com/hydro-project/hydro.git", branch = "main" }
+rayon = "1.10.0"
+stageleft = "0.8.1"
+
+[build-dependencies]
+stageleft_tool = "0.8.1"
+
+[dev-dependencies]
+hydro_deploy = { git = "https://github.com/hydro-project/hydro.git", branch = "main" }
+hydro_lang = { git = "https://github.com/hydro-project/hydro.git", branch = "main", features = [
+    "deploy",
+] }
+tokio = { version = "1.29.0", features = ["full"] }
