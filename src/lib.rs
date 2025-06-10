@@ -1,6 +1,6 @@
 stageleft::stageleft_no_entry_crate!();
 
 pub mod cluster;
-mod parallel;
-mod rayon;
+pub mod parallel_hydro;
+pub mod parallel_std;
 pub mod sequential;
