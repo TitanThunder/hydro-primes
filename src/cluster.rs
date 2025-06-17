@@ -5,7 +5,9 @@ pub struct Worker {}
 
 pub fn cluster<'a>(leader: &Process<'a, Leader>, workers: &Cluster<'a, Worker>) {
     leader
-        .source_iter(q!(["ThIs", "Is", "JuSt", "A", "ShOrT", "HyDrO-", "FlOw", "TeSt."]))
+        .source_iter(q!([
+            "ThIs", "Is", "JuSt", "A", "ShOrT", "HyDrO-", "FlOw", "TeSt."
+        ]))
         .map(q!(|s| s.to_string()))
         .round_robin_bincode(workers)
         .inspect(q!(|s| println!("{:?}", s)))

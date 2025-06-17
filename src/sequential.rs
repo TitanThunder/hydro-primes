@@ -1,4 +1,4 @@
-pub fn sieve_of_eratosthenes(limit: usize) -> Vec<usize> {
+pub fn generate_primes_sequential(limit: usize) -> Vec<usize> {
     if limit < 2 {
         return vec![];
     }

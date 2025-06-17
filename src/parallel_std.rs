@@ -1,24 +1,5 @@
+use crate::utils;
 use std::thread;
-
-pub fn is_prime(n: usize) -> bool {
-    if n <= 1 {
-        return false;
-    }
-    if n == 2 {
-        return true;
-    }
-    if n % 2 == 0 {
-        return false;
-    }
-
-    let sqrt_n = (n as f64).sqrt() as usize;
-    for i in (3..=sqrt_n).step_by(2) {
-        if n % i == 0 {
-            return false;
-        }
-    }
-    true
-}
 
 pub fn generate_primes_parallel(limit: usize) -> Vec<usize> {
     let num_threads = 8; // Adjust based on your CPU
@@ -32,7 +13,7 @@ pub fn generate_primes_parallel(limit: usize) -> Vec<usize> {
 
         let handle = thread::spawn(move || {
             (start..end)
-                .filter(|&n| is_prime(n))
+                .filter(|&n| utils::is_prime(n))
                 .collect::<Vec<usize>>()
         });
 
@@ -46,6 +27,6 @@ pub fn generate_primes_parallel(limit: usize) -> Vec<usize> {
         }
     }
 
-    primes.sort(); // Optional: ensure result is sorted
+    primes.sort();
     primes
 }
