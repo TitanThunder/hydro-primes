@@ -9,6 +9,7 @@ pub fn generate_primes<'a>(leader: &Process<'a, Leader>, workers: &Cluster<'a, W
     static mut CURRENT: usize = 2;
 
     unsafe {
+        // calculation and collection of primes
         let primes = workers
             .tick()
             .spin_batch(q!(1))
@@ -23,6 +24,7 @@ pub fn generate_primes<'a>(leader: &Process<'a, Leader>, workers: &Cluster<'a, W
             .send_bincode_anonymous(leader)
             .fold_commutative(q!(|| Vec::new()), q!(|acc, n| acc.push(n)));
 
+        // output
         primes
             .sample_every(q!(Duration::from_secs(1)))
             .for_each(q!(|primes: Vec<usize>| {

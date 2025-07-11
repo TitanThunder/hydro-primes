@@ -60,7 +60,7 @@ cargo run --example sequential
 This version parallelizes the prime number generation using Rust’s built-in multithreading support via the `std::thread` module. 
 The core logic of the Sieve of Eratosthenes is split into chunks, each handled by a separate thread to take advantage of multiple CPU cores.
 ```bash
-cargo run --example parallel_rust
+cargo run --example parallel_std
 ```
 The implementation, found in [examples/parallel_std](examples/parallel_std.rs), demonstrates how you can divide the sieve range among threads, compute primes in each subrange, and then merge the results. 
 This significantly reduces computation time on multi-core systems compared to the sequential version.
